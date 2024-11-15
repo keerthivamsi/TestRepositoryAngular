@@ -28,8 +28,10 @@ export class LoginComponent implements OnInit {
     const authService = this.injector.get(AuthService);
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
+    
+    this.router.navigate(['./home'])
+
     if(authService.login(username, password)){
-      this.router.navigate(['./home'])
     }
   }
 

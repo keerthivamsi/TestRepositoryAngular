@@ -4,12 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated: boolean = false;
-  private authSecretKey: string = 'Bearer Token';
+  isAuthenticated: any = false;
+  authSecretKey: string = 'Bearer Token';
 
-  constructor() { }
+  constructor() {
+    this.isAuthenticated = localStorage.getItem(this.authSecretKey);
+  }
+  
   login(username: string, password: string): boolean {
-    if(username === 'keerthi' && password === '1234') {
+    if(username === 'keerthi' && password == 'keer') {
       const authToken = 'eyjjafhjfhuerfjejfhjkafhjkahfjrbfrgtrjghrltrglrjglkjalkjflkjrlkefjeruhcjkfbck';
       localStorage.setItem(this.authSecretKey, authToken);
       this.isAuthenticated = true;
