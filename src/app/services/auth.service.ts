@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,18 @@ export class AuthService {
   isAuthenticated: any = false;
   authSecretKey: string = 'Bearer Token';
 
-  constructor() {
-    this.isAuthenticated = localStorage.getItem(this.authSecretKey);
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isAuthenticated = localStorage.getItem(this.authSecretKey);
+    }
   }
   
   login(username: string, password: string): boolean {
     if(username === 'keerthi' && password == 'keer') {
       const authToken = 'eyjjafhjfhuerfjejfhjkafhjkahfjrbfrgtrjghrltrglrjglkjalkjflkjrlkefjeruhcjkfbck';
-      localStorage.setItem(this.authSecretKey, authToken);
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem(this.authSecretKey, authToken);  
+      }
       this.isAuthenticated = true;
       return true;
     }
@@ -22,6 +27,7 @@ export class AuthService {
       return false;
     }
   }
+
 
   isAuthenticatedUser(): boolean {
     return this.isAuthenticated;

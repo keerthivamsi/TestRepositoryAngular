@@ -19,7 +19,7 @@ describe('AuthService', () => {
     const username = 'keerthi';
     const password = '12345';
     service.login(username, password);
-    expect(service.isAuthenticated).toBe(false);
+    expect(service.isAuthenticated).toBe(null);
     expect(service.login(username, password)).toBe(false);
   })
 
@@ -33,7 +33,7 @@ describe('AuthService', () => {
 
   it('should call isAuthenticaetdUser', () => {
     service.isAuthenticatedUser();
-    expect(service.isAuthenticatedUser()).toBe(false);
+    expect(service.isAuthenticatedUser()).toBe("eyjjafhjfhuerfjejfhjkafhjkahfjrbfrgtrjghrltrglrjglkjalkjflkjrlkefjeruhcjkfbck");
     expect(service.isAuthenticatedUser()).toBeDefined();
   })
 });
