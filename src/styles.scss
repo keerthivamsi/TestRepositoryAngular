@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+/* Core Data Grid CSS */
+@import 'ag-grid-community/styles/ag-grid.css';
+/* Quartz Theme Specific CSS */
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+
+.ag-theme-quartz {
+    /* Changes the color of the grid text */
+      --ag-foreground-color: rgb(14, 68, 145);
+      /* Changes the color of the grid background */
+      --ag-background-color: rgb(241, 247, 255);
+      /* Changes the header color of the top row */
+      --ag-header-background-color: rgb(228, 237, 250);
+      /* Changes the hover color of the row*/
+      --ag-row-hover-color: rgb(216, 226, 255);
+}
+
+.rag-green {
+    background-color: #33cc3344;
+}
+
+.rag-red {
+    background-color: #cc222244;
+}

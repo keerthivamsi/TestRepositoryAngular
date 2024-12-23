@@ -6,18 +6,21 @@ import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { addProduct, deleteProduct, updateProduct } from '../../state/items.action';
+import { canComponentDeactivate } from '../../guards/can-deactivate.guard';
+import { AgGridComponent } from '../ag-grid/ag-grid.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,AgGridComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, canComponentDeactivate {
   store$: any;
   productDetails: Product[] = [];
   ProductForm: FormGroup;
+  unsavedChanges: boolean = false;
 
   constructor(private store: Store<AppState>, private fb: FormBuilder) {
     this.store$ = store.select(selectItems);
@@ -34,7 +37,8 @@ export class HomeComponent implements OnInit {
 
   addProduct() {
     console.log("form values are", this.ProductForm.value);
-    const item: Product = this.ProductForm.value
+    const item: Product = this.ProductForm.value;
+    this.unsavedChanges = false;
     if(this.ProductForm.value.id) {
       this.store$.dispatch(updateProduct({item}));
       this.ProductForm.reset();
@@ -62,5 +66,14 @@ export class HomeComponent implements OnInit {
 
   deleteItem(item: string) {
     this.store$.dispatch(deleteProduct({item}))
+  }
+
+  canDeactivate(): boolean {
+    if(this.ProductForm.dirty) {
+      return window.confirm("you have unsaved changes. Do you really want to leave?")
+    }
+    else {
+      return true;
+    }
   }
 }
