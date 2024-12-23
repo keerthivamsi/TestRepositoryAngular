@@ -1,0 +1,16 @@
+<div class="login-container">
+    <h1>Login</h1>
+    <div>
+        <form [formGroup]="loginForm">
+            <div class="row">
+                <div class="col-md-6">Username</div>
+                <div class="col-md-6"><input type="text" formControlName="username" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">Password</div>
+                <div class="col-md-6"><input type="text" formControlName="password"/></div>
+            </div>
+            <button class="btn btn-primary" type="submit" (click)="loginFormSubmit();">Login</button>
+        </form>
+    </div>
+</div>

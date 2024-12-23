@@ -1,0 +1,15 @@
+ <!-- The AG Grid component -->
+ <div style="height: 100%; box-sizing: border-box;">
+ <ag-grid-angular
+   [class]="themeClass"
+   class="ag-theme-quartz"
+   style="height: 500px;"
+   [rowData]="rowData"
+   [columnDefs]="colDefs" 
+   [rowSelection]="rowSelection" 
+   [rowClassRules]="rowClassRules"
+   [pagination]="pagination"
+   [paginationPageSize]="paginationPageSize"
+   [paginationPageSizeSelector]="paginationPageSizeSelector"
+   [defaultColDef]="defaultColDef"/>
+</div>

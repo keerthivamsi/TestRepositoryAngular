@@ -1,0 +1,56 @@
+<p>home works!</p>
+
+<div class="container">
+    <form [formGroup]="ProductForm">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Name</label>
+                <input type="text" formControlName="name" />
+            </div>
+            <div class="col-md-4">
+                <label>price</label>
+                <input type="number" formControlName="price" />
+            </div>
+            <div class="col-md-4">
+                <label>quantity</label>
+                <input type="number" formControlName="quantity" />
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" (click)="addProduct()">{{ProductForm.value.id? 'Update Product': 'Add Product' }}</button>
+        </div>
+    </form>
+</div>
+<table class="table-bordered">
+    <thead>
+        <th>
+            name
+        </th>
+        <th>
+            price
+        </th>
+        <th>
+            quantity
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of productDetails;let i =index">
+            <td>
+                {{item.name}}
+            </td>
+            <td>
+                {{item.price}}
+            </td>
+            <td>
+                {{item.quantity}}
+            </td>
+            <td (click)="editItem(item)">
+                Edit
+            </td>
+            <td (click)="deleteItem(item.id)">
+                delete
+            </td>
+        </tr>
+    </tbody>
+</table>  
+<app-ag-grid></app-ag-grid>                                                                                                                                                                     
